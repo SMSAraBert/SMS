@@ -10,4 +10,4 @@ numpy
 pickle
 flask-ngrok
 flasgger
-pyngrok
+pyngrok==4.1.1
