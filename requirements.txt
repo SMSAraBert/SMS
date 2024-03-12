@@ -1,0 +1,13 @@
+flask
+tensorflow
+keras
+nltk
+pyarabic
+spellchecker
+urlextract
+pandas
+numpy
+pickle
+flask-ngrok
+flasgger
+pyngrok
