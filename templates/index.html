@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arabic SMS SPAM Detection</title>
+  <link rel="stylesheet" href="static/styles.css">
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Arabic SMS SPAM Detection</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="register.html">Register</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>Welcome to Arabic SMS SPAM Detection</h2>
+      <p>Enter an SMS message below to detect if it is spam:</p>
+      <form id="sms-form" action="/sms" method="post">
+        <textarea name="Body" placeholder="Paste SMS here"></textarea>
+        <button type="submit" onclick="makeRequest()">Detect Spam</button>
+      </form>
+
+    </section>
+
+    <section>
+      <h2>User Feedback</h2>
+      <p>Share your feedback with us:</p>
+      <form>
+        <textarea placeholder="Write your feedback here"></textarea>
+        <button type="submit">Submit Feedback</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2023 Arabic SMS SPAM Detection. All rights reserved.</p>
+  </footer>
+</body>
+<script>
+    function makeRequest() {
+        event.preventDefault(); // Prevent form submission
+
+        var form = document.getElementById("sms-form");
+        var formData = new FormData(form);
+
+        $.ajax({
+            url: form.action,
+            type: form.method,
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                var parsedResponse = JSON.parse(response);
+                alert("Prediction: " + parsedResponse.prediction);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    }
+</script>
+</html>
+
+
+
