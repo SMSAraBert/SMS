@@ -10,3 +10,4 @@ numpy
 flask-ngrok
 flasgger
 pyngrok==4.1.1
+gunicorn
