@@ -299,7 +299,7 @@ def strip_tashkeel(text):
     # TODO: Implement this function to strip tashkeel marks from text
     return text
 
-model = load_model('/content/drive/MyDrive/sms/arabert_model.h5')
+model = load_model('arabert_model.h5')
 
 maxlen =200
 def preprocess_text(sms):
