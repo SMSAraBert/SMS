@@ -1,0 +1,12 @@
+flask
+tensorflow
+nltk
+pyarabic
+pyspellchecker
+urlextract
+pandas
+numpy
+flask-ngrok
+flasgger
+pyngrok==4.1.1
+gunicorn
