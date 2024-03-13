@@ -88,7 +88,7 @@ englishPunctuations = string.punctuation # importing English punctuation marks
 englishPunctuations = [word.strip() for word in englishPunctuations] # converting the English punctuation from a string to array for processing
 punctuationsList = arabicPunctuations + englishPunctuations # creating a list of all punctuation marks
 # loading imojis file
-with open('emojis.csv','r',encoding='utf-8') as f:
+with open('/content/drive/MyDrive/sms/emojis.csv','r',encoding='utf-8') as f:
     lines = f.readlines()
     emojis_ar = {}
     for line in lines:
@@ -299,7 +299,7 @@ def strip_tashkeel(text):
     # TODO: Implement this function to strip tashkeel marks from text
     return text
 
-model = load_model('arabert_model.h5')
+model = load_model('/content/drive/MyDrive/sms/arabert_model.h5')
 
 maxlen =200
 def preprocess_text(sms):
