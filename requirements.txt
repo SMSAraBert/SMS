@@ -1,6 +1,5 @@
 flask
 tensorflow
-keras
 nltk
 pyarabic
 pyspellchecker
