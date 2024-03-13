@@ -88,7 +88,7 @@ englishPunctuations = string.punctuation # importing English punctuation marks
 englishPunctuations = [word.strip() for word in englishPunctuations] # converting the English punctuation from a string to array for processing
 punctuationsList = arabicPunctuations + englishPunctuations # creating a list of all punctuation marks
 # loading imojis file
-with open('/content/drive/MyDrive/sms/emojis.csv','r',encoding='utf-8') as f:
+with open('emojis.csv','r',encoding='utf-8') as f:
     lines = f.readlines()
     emojis_ar = {}
     for line in lines:
