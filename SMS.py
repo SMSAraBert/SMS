@@ -342,10 +342,6 @@ def preprocessing(text):
 
 # Define the API endpoint for receiving SMS messages
 app = Flask(__name__)
-run_with_ngrok(app)
-Swagger(app)
-from pyngrok import ngrok
-ngrok.set_auth_token('2LzEGKEZyOxWD3tLDcK6YPxlSC8_2cHXfQ6K3syud3kBM8EaW')
 @app.route('/sms', methods=['POST'])
 def receive_sms():
     input_text = request.form.get('Body')
