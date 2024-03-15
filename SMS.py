@@ -1,6 +1,5 @@
 from flask import Flask, request, jsonify
 from flask import render_template
-from flasgger import Swagger
 import json
 import tensorflow as tf
 from tensorflow.keras.models import load_model
