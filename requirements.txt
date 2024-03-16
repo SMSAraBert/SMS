@@ -1,6 +1,6 @@
 flask
 tensorflow
-keras
+keras==2.15.0
 nltk
 pyarabic
 pyspellchecker
