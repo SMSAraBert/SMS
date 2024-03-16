@@ -1,7 +1,6 @@
 from flask import Flask, request, jsonify
 from flask import render_template
 import json
-import tensorflow as tf
 from keras.models import load_model
 from keras.preprocessing.sequence import pad_sequences
 from keras.preprocessing.text import Tokenizer
