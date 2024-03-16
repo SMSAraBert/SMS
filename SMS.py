@@ -338,7 +338,7 @@ def preprocessing(text):
     return [text,urlFound , precenatgeError,containPhoneNo, extensionDomain,httpType,PhoneType]      
 
 # Define the API endpoint for receiving SMS messages
-app = Flask(__name__, static_folder='static')
+app = Flask(__name__)
 @app.route('/', methods=['POST'])
 def receive_sms():
     input_text = request.form.get('Body')
