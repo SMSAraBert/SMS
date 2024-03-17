@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from flask import render_template
+from flask import render_template, url_for
 import json
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.sequence import pad_sequences
@@ -339,9 +339,13 @@ def preprocessing(text):
 
 # Define the API endpoint for receiving SMS messages
 app = Flask(__name__)
-@app.route('/SMS', methods=['POST'])
-def receive_sms():
-    input_text = request.form.get('Body')
+@app.route('/')
+def index():
+     return render_template('index.html')
+@app.route('/', methods=['GET','POST'])
+def home():
+  if request.method=='POST':
+    input_text = request.form['Body']
     if input_text is None:
         return jsonify({'error': 'No input text provided'})
     
@@ -366,13 +370,11 @@ def receive_sms():
       prediction='SPAM'
     else:
       prediction='Not SPAM'
+    print(prediction)
     response = {'prediction': prediction}
-    return json.dumps(response)
+    return render_template('index.html',prediction=prediction)
 
-# Define a welcome message for the root endpoint
-@app.route('/')
-def welcome():
-     return render_template('index.html')
+
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
