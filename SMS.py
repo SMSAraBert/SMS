@@ -339,7 +339,7 @@ def preprocessing(text):
 
 # Define the API endpoint for receiving SMS messages
 app = Flask(__name__)
-@app.route('/SMS/', methods=['POST'])
+@app.route('/SMS', methods=['POST'])
 def receive_sms():
     input_text = request.form.get('Body')
     if input_text is None:
