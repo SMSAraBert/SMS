@@ -372,7 +372,7 @@ def home():
       prediction='Not SPAM'
     print(prediction)
     response = {'prediction': prediction}
-    return render_template('index.html',prediction=prediction)
+    return json.dumps(response)
 
 
 
