@@ -14,9 +14,9 @@
     <nav>
      
     <ul>
-      <li><a href="templates/index.html">Home</a></li>
-      <li><a href="templates/login.html">Login</a></li>
-      <li><a href="templates/register.html">Register</a></li>
+      <li><a href="../templates/index.html">Home</a></li>
+      <li><a href="../templates/login.html">Login</a></li>
+      <li><a href="../templates/register.html">Register</a></li>
     </ul>
     
     </nav>
@@ -40,7 +40,8 @@
         <textarea placeholder="Write your feedback here"></textarea>
         <button type="submit">Submit Feedback</button>
       </form>
-      <center><p style="color: darkred; font-weight: bold;"> {{ prediction }} </p> </center>
+      <p id="prediction" style="color: darkred; font-weight: bold;"></p>
+
     </section>
   </main>
 
@@ -49,27 +50,30 @@
   </footer>
 </body>
 <script>
-    function makeRequest() {
-        event.preventDefault(); // Prevent form submission
+function makeRequest() {
+    event.preventDefault(); // Prevent form submission
 
-        var form = document.getElementById("sms-form");
-        var formData = new FormData(form);
+    var form = document.getElementById("sms-form");
+    var formData = new FormData(form);
 
-        $.ajax({
-            url: form.action,
-            type: form.method,
-            data: formData,
-            processData: false,
-            contentType: false,
-            success: function(response) {
-                var parsedResponse = JSON.parse(response);
-                alert("Prediction: " + parsedResponse.prediction);
-            },
-            error: function(error) {
-                console.log(error);
-            }
-        });
-    }
+    $.ajax({
+        url: form.action,
+        type: form.method,
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(response) {
+            var parsedResponse = JSON.parse(response);
+            // Update the prediction result on the page
+            document.getElementById("prediction").innerText = "Prediction: " + parsedResponse.prediction;
+        },
+        error: function() {
+            alert("Error occurred while making the request.");
+        }
+    });
+}
+
+    
 </script>
 </html>
 
