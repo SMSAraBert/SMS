@@ -340,10 +340,11 @@ def preprocessing(text):
 # Define the API endpoint for receiving SMS messages
 app = Flask(__name__)
 
-@app.route('/', methods=['GET','POST'])
+@app.route('/', methods=['POST'])
 def home():
   if request.method=='POST':
-    input_text = request.form['Body']
+    input_text = request.form.get('Body')
+ 
     if input_text is None:
         return jsonify({'error': 'No input text provided'})
     
