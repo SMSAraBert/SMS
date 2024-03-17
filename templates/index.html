@@ -65,11 +65,10 @@ function makeRequest() {
         contentType: false,
         success: function(response) {
             var parsedResponse = JSON.parse(response);
-            // Update the prediction result on the page
-            document.getElementById("prediction").innerText = "Prediction: " + parsedResponse.prediction;
+            alert("Prediction: " + parsedResponse.prediction);
         },
-        error: function() {
-            alert("Error occurred while making the request.");
+        error: function(error) {
+            console.log(error);
         }
     });
 }
