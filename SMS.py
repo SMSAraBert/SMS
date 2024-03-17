@@ -343,7 +343,7 @@ app = Flask(__name__)
 def index():
      return render_template('index.html')
 
-@app.route('/', methods=['GET','POST'])
+@app.route('/', methods=['POST'])
 def home():
   if request.method=='POST':
     input_text = request.form.get('Body')
