@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Arabic SMS SPAM Detection</title>
-  <link rel="stylesheet" href="static/styles.css">
+  <link rel="stylesheet" href="{{url_for('static',filename='styles.css')}}>
    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
@@ -25,7 +25,7 @@
     <section>
       <h2>Welcome to Arabic SMS SPAM Detection</h2>
       <p>Enter an SMS message below to detect if it is spam:</p>
-      <form id="sms-form" action="/SMS" method="post">
+      <form id="sms-form" action="{{url_for('home')}}" method="POST">
         <textarea name="Body" placeholder="Paste SMS here"></textarea>
         <button type="submit" onclick="makeRequest()">Detect Spam</button>
       </form>
@@ -39,6 +39,7 @@
         <textarea placeholder="Write your feedback here"></textarea>
         <button type="submit">Submit Feedback</button>
       </form>
+      <center><p style="color: darkred; font-weight: bold;"> {{ prediction }} </p> </center>
     </section>
   </main>
 
