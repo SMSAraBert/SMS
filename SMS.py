@@ -339,9 +339,7 @@ def preprocessing(text):
 
 # Define the API endpoint for receiving SMS messages
 app = Flask(__name__)
-@app.route('/')
-def index():
-     return render_template('index.html')
+
 @app.route('/', methods=['GET','POST'])
 def home():
   if request.method=='POST':
@@ -373,8 +371,12 @@ def home():
     print(prediction)
     response = {'prediction': prediction}
     return json.dumps(response)
+@app.route('/')
+def index():
+     return render_template('index.html')
+
 
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
