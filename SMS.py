@@ -14,7 +14,7 @@ def sms_process():
  
     if input_text is None:
         return jsonify({'prediction': 'No input text provided'})
-     response=predict_sms(input_text)
+    response=predict_sms(input_text)
     
     return  jsonify(response)
 
