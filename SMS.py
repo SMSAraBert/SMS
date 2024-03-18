@@ -339,7 +339,7 @@ def preprocessing(text):
 
 # Define the API endpoint for receiving SMS messages
 app = Flask(__name__)
-@app.route('/')
+@app.route('/',methods=['GET'])
 def home():
      return render_template('home.html')
 
@@ -373,7 +373,7 @@ def sms_process():
       prediction='Not SPAM'
     print(prediction)
     response = {'prediction': prediction}
-    return  {'prediction': prediction}
+    return  jsonify({'prediction': prediction})
 
 
 
