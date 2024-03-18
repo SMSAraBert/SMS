@@ -348,7 +348,7 @@ def sms_process():
     input_text = request.form.get('Body')
  
     if input_text is None:
-        return jsonify({'error': 'No input text provided'})
+        return jsonify({'prediction': 'No input text provided'})
     
     data = preprocessing(input_text)
    
