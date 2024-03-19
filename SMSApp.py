@@ -3,6 +3,7 @@ from flask import render_template, url_for
 import json
 from preprocess import preprocessing,predict_sms
 # Login page
+app = Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
