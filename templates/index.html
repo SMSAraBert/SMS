@@ -4,22 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Arabic SMS SPAM Detection</title>
-  <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}">
-
-   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
   <header>
     <h1>Arabic SMS SPAM Detection</h1>
     <nav>
-     
       <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="login.html">Login</a></li>
-        <li><a href="register.html">Register</a></li>
+        <li><a href="{{ url_for('index') }}">Home</a></li>
+        <li><a href="{{ url_for('login') }}">Login</a></li>
+        <li><a href="{{ url_for('register') }}">Register</a></li>
       </ul>
-
-    
     </nav>
   </header>
 
@@ -27,11 +23,10 @@
     <section>
       <h2>Welcome to Arabic SMS SPAM Detection</h2>
       <p>Enter an SMS message below to detect if it is spam:</p>
-      <form id="sms-form" action="/" method="POST">
+      <form id="sms-form" action="{{ url_for('index') }}" method="POST">
         <textarea name="Body" placeholder="Paste SMS here"></textarea>
-        <button type="submit" onclick="makeRequest(event)">Detect Spam</button>
+        <button type="submit">Detect Spam</button>
       </form>
-
     </section>
 
     <section>
@@ -42,7 +37,6 @@
         <button type="submit">Submit Feedback</button>
       </form>
       <p id="prediction" style="color: darkred; font-weight: bold;"></p>
-
     </section>
   </main>
 
@@ -51,26 +45,27 @@
   </footer>
 </body>
 <script>
-function makeRequest(event) {
+$(document).ready(function() {
+  $('#sms-form').submit(function(event) {
     event.preventDefault(); // Prevent form submission
 
-    var form = document.getElementById("sms-form");
-    var formData = new FormData(form);
+    var form = $(this);
+    var formData = new FormData(form[0]);
 
     $.ajax({
-        url: form.action,
-        type: form.method,
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function(response) {
-            var parsedResponse = JSON.parse(response);
-            alert("Prediction: " + parsedResponse.prediction);
-        },
-        error: function(error) {
-            console.log(error);
-        }
+      url: form.attr('action'),
+      type: form.attr('method'),
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function(response) {
+        $('#prediction').text('Prediction: ' + response.prediction);
+      },
+      error: function(error) {
+        console.log(error);
+      }
     });
-}
+  });
+});
 </script>
 </html>
