@@ -5,7 +5,7 @@ from preprocess import preprocessing,predict_sms
 import os
 import psycopg2
 
-DATABASE_URL = os.environ['postgres://dbsms_user:vU3Kv9Gt4qxvHeluhqQDHRpw0uHNA9Iq@dpg-cnt1hekf7o1s73b0sh0g-a.oregon-postgres.render.com/dbsms']
+DATABASE_URL = os.environ['DATABASE_URL']
 
 conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 cur = conn.cursor()
