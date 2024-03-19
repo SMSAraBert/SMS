@@ -2,6 +2,62 @@ from flask import Flask, request, jsonify
 from flask import render_template, url_for
 import json
 from preprocess import preprocessing,predict_sms
+import os
+import psycopg2
+
+DATABASE_URL = os.environ['postgres://dbsms_user:vU3Kv9Gt4qxvHeluhqQDHRpw0uHNA9Iq@dpg-cnt1hekf7o1s73b0sh0g-a.oregon-postgres.render.com/dbsms']
+
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+cur = conn.cursor()
+def execute_query(query):
+    try:
+        cur.execute(query)
+        conn.commit()
+        print("Query executed successfully.")
+    except (Exception, psycopg2.Error) as error:
+        print("Error executing query:", error)
+    finally:
+        if conn:
+            cur.close()
+            conn.close()
+create_tables_query = """
+-- Create the User table
+CREATE TABLE User (
+  UserID SERIAL PRIMARY KEY,
+  Username VARCHAR(255),
+  Password VARCHAR(255),
+  Role VARCHAR(255),
+  Email VARCHAR(255)
+);
+
+-- Create the SMSMessage table
+CREATE TABLE SMSMessage (
+  MessageID SERIAL PRIMARY KEY,
+  MessageText TEXT
+);
+
+-- Create the ClassificationResult table
+CREATE TABLE ClassificationResult (
+  UserID INT,
+  MessageID INT,
+  IsSpam BOOLEAN,
+  PRIMARY KEY (UserID, MessageID),
+  FOREIGN KEY (UserID) REFERENCES User(UserID),
+  FOREIGN KEY (MessageID) REFERENCES SMSMessage(MessageID)
+);
+
+-- Create the Feedback table
+CREATE TABLE Feedback (
+  UserID INT,
+  MessageID INT,
+  FeedbackText VARCHAR(255),
+  PRIMARY KEY (UserID, MessageID),
+  FOREIGN KEY (UserID) REFERENCES User(UserID),
+  FOREIGN KEY (MessageID) REFERENCES SMSMessage(MessageID)
+);
+"""
+
+execute_query(create_tables_query)
 # Login page
 app = Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
