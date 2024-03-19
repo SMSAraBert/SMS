@@ -1,7 +1,6 @@
 flask
 psycopg2-binary
-tensorflow
-keras
+tensorflow==2.15.0
 nltk
 pyarabic
 pyspellchecker
