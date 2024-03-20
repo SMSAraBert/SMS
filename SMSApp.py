@@ -22,7 +22,7 @@ def execute_query(query):
             conn.close()
 create_tables_query = """
 -- Create the User table
-CREATE TABLE User (
+CREATE TABLE "User" (
   UserID SERIAL PRIMARY KEY,
   Username VARCHAR(255),
   Password VARCHAR(255),
@@ -42,7 +42,7 @@ CREATE TABLE ClassificationResult (
   MessageID INT,
   IsSpam BOOLEAN,
   PRIMARY KEY (UserID, MessageID),
-  FOREIGN KEY (UserID) REFERENCES User(UserID),
+  FOREIGN KEY (UserID) REFERENCES "User"(UserID),
   FOREIGN KEY (MessageID) REFERENCES SMSMessage(MessageID)
 );
 
@@ -52,7 +52,7 @@ CREATE TABLE Feedback (
   MessageID INT,
   FeedbackText VARCHAR(255),
   PRIMARY KEY (UserID, MessageID),
-  FOREIGN KEY (UserID) REFERENCES User(UserID),
+  FOREIGN KEY (UserID) REFERENCES "User"(UserID),
   FOREIGN KEY (MessageID) REFERENCES SMSMessage(MessageID)
 );
 """
