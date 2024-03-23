@@ -57,7 +57,7 @@ CREATE TABLE Feedback (
 );
 """
 
-execute_query(create_tables_query)
+# execute_query(create_tables_query)
 # Login page
 app = Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
