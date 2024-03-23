@@ -335,9 +335,7 @@ def preprocessing(text):
 
     return [text,urlFound , precenatgeError,containPhoneNo, extensionDomain,httpType,PhoneType]      
 def predict_sms(input_text):
-    input_text = request.form.get('Body')
-
-    
+       
     data = preprocessing(input_text)
    
     sms=data[0]
