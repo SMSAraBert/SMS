@@ -85,6 +85,6 @@ def predict():
 # Index page
 @app.route('/index', methods=['GET'])
 def index():
-    if 'logged_in' not in session:
-        return redirect(url_for('login'))
+    # if 'logged_in' not in session:
+    #     return redirect(url_for('login'))
     return render_template('index.html')
