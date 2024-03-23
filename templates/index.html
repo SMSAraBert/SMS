@@ -53,8 +53,8 @@ $(document).ready(function() {
     var formData = new FormData(form[0]);
 
     $.ajax({
-      url: form.attr('action'),
-      type: form.attr('method'),
+      url: '{{ url_for('predict') }}', // Update the URL to the '/predict' route
+      type: 'POST', // Use the appropriate HTTP method
       data: formData,
       processData: false,
       contentType: false,
