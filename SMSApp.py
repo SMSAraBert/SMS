@@ -77,16 +77,14 @@ def register():
         # If registration is successful, redirect to login
         return redirect(url_for('login'))
     return render_template('register.html')
-
+@app.route('/predict', methods=['POST'])
+def predict():
+    sms_text = request.form['Body']
+    prediction = predict_sms(sms_text)  # Call your spam detection function here
+    return jsonify({'prediction': prediction})
 # Index page
-@app.route('/index', methods=['GET', 'POST'])
+@app.route('/index', methods=['GET'])
 def index():
-    # if 'logged_in' not in session:
-    #     return redirect(url_for('login'))
-
-    if request.method == 'POST':
-        sms_text = request.form['Body']
-        prediction = predict_sms(sms_text)
-        return render_template('index.html', prediction=prediction)
-
+    if 'logged_in' not in session:
+        return redirect(url_for('login'))
     return render_template('index.html')
