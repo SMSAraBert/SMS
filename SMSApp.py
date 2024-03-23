@@ -88,3 +88,6 @@ def index():
     # if 'logged_in' not in session:
     #     return redirect(url_for('login'))
     return render_template('index.html')
+if __name__ == '__main__':
+    # app.run(debug=True)
+     app.run(host='localhost', port=8080, debug=True)
